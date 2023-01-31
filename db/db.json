@@ -1,5 +1,14 @@
-[
-  {
-    "notesArray": []
-  }
-]
+{
+  "notes": [
+    {
+      "title": "test note",
+      "text": "default text",
+      "id": 0
+    },
+    {
+      "title": "this is a note",
+      "text": "also note\n",
+      "id": "1"
+    }
+  ]
+}

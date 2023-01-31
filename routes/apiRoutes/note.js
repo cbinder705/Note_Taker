@@ -1,26 +1,17 @@
 const router = require("express").Router();
-const { createNewNote, deleteNote } = require("../../lib/notes");
-const { notesArray } = require("../../db/db.json");
-const uuid = require("./../../helpers/uuid");
+const { createNewNote } = require("../../lib/notes");
+const { notes } = require("../../db/db.json");
+//const uuid = require("./../../helpers/uuid");
 
 router.get("/notes", (req, res) => {
-  let results = notesArray;
+  let results = notes;
   res.json(results);
 });
 
 router.post("/notes", (req, res) => {
-  if (notesArray) {
-    req.body.id = notesArray.length.toString();
-  } else {
-    req.body.id = 0;
-  }
-  res.json(createNewNote(req.body, notesArray));
-});
-
-router.delete("/notes/:id", async (req, res) => {
-  const { id } = req.params;
-  notesArray = await deleteNote(id, notesArray);
-  res.json(notesArray);
+  req.body.id = notes.length.toString();
+  let note = createNewNote(req.body, notes);
+  res.json(note);
 });
 
 module.exports = router;
